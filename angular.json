@@ -1,106 +1,138 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "angular-gentelella": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/angular-gentelella",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "cli": {
+        "analytics": "c9f59617-25c3-484f-b646-b59a3c270903"
+    },
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "angular-gentelella": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:application": {
+                    "strict": true
+                }
+            },
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/angular-gentelella",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.app.json",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.css",
+                            "node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css",
+                            "node_modules/gentelella/vendors/font-awesome/css/font-awesome.min.css",
+                            "node_modules/gentelella/vendors/nprogress/nprogress.css",
+                            "node_modules/gentelella/vendors/iCheck/skins/flat/green.css",
+                            "node_modules/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
+                            "node_modules/gentelella/vendors/jqvmap/dist/jqvmap.min.css",
+                            "node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css",
+                            "node_modules/gentelella/build/css/custom.min.css"
+                        ],
+                        "scripts": [
+                            "node_modules/gentelella/vendors/jquery/dist/jquery.min.js",
+                            "node_modules/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js",
+                            "node_modules/gentelella/vendors/fastclick/lib/fastclick.js",
+                            "node_modules/gentelella/vendors/nprogress/nprogress.js",
+                            "node_modules/gentelella/vendors/Chart.js/dist/Chart.min.js",
+                            "node_modules/gentelella/vendors/gauge.js/dist/gauge.min.js",
+                            "node_modules/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",
+                            "node_modules/gentelella/vendors/iCheck/icheck.min.js",
+                            "node_modules/gentelella/vendors/skycons/skycons.js",
+                            "node_modules/gentelella/vendors/Flot/jquery.flot.js",
+                            "node_modules/gentelella/vendors/Flot/jquery.flot.pie.js",
+                            "node_modules/gentelella/vendors/Flot/jquery.flot.time.js",
+                            "node_modules/gentelella/vendors/Flot/jquery.flot.stack.js",
+                            "node_modules/gentelella/vendors/Flot/jquery.flot.resize.js",
+                            "node_modules/gentelella/vendors/flot.orderbars/js/jquery.flot.orderBars.js",
+                            "node_modules/gentelella/vendors/flot-spline/js/jquery.flot.spline.min.js",
+                            "node_modules/gentelella/vendors/flot.curvedlines/curvedLines.js",
+                            "node_modules/gentelella/vendors/DateJS/build/date.js",
+                            "node_modules/gentelella/vendors/jqvmap/dist/jquery.vmap.js",
+                            "node_modules/gentelella/vendors/jqvmap/dist/maps/jquery.vmap.world.js",
+                            "node_modules/gentelella/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js",
+                            "node_modules/gentelella/vendors/moment/min/moment.min.js",
+                            "node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.prod.ts"
+                            }],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
                 },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "angular-gentelella:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "angular-gentelella:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "angular-gentelella:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.spec.json",
+                        "karmaConfig": "karma.conf.js",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.css"
+                        ],
+                        "scripts": []
+                    }
                 }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
             }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "angular-gentelella:build:production"
-            },
-            "development": {
-              "browserTarget": "angular-gentelella:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "angular-gentelella:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          }
         }
-      }
-    }
-  },
-  "defaultProject": "angular-gentelella"
+    },
+    "defaultProject": "angular-gentelella"
 }
